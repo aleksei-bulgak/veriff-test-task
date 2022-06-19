@@ -5,11 +5,6 @@ import { Session, SessionContext, SessionMedia } from "../types/session";
 axiosRetry(axios, {
   retries: 10,
   retryDelay: axiosRetry.exponentialDelay,
-  retryCondition: (e) => {
-    const retry = axiosRetry.isNetworkOrIdempotentRequestError(e);
-    console.log('some error occured', e);
-    return retry;
-  },
 });
 
 export default class SessionClient {
