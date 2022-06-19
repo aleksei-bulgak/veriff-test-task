@@ -6,8 +6,7 @@ const errorHandler = (
   response: Response,
   next: NextFunction,
 ): void => {
-//   response.status(500).json({ message: error.message });
-next(error)
+  response.status(500).json({ message: error.message });
 };
 
 export default errorHandler;

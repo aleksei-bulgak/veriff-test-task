@@ -8,7 +8,7 @@ const SESSION_UUID = '90d61876-b99a-443e-994c-ba882c8558b6';
 
 const getResponse = (code, data) => {
   const random = Math.floor(Math.random() * 10) + 1;
-  if (random > 8) {
+  if (random > 5) {
     return [500, 'There is something wrong with the service'];
   }
 
