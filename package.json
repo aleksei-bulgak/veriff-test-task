@@ -4,6 +4,7 @@
   "description": "JS BE/FS test task",
   "main": "dist/index.js",
   "scripts": {
+    "lint": "eslint src test --ext .ts",
     "build": "tsc -p ./config/tsconfig.json",
     "test": "jest --config ./config/jest.json",
     "start:test": "node dist/index.js &",

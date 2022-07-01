@@ -1,20 +1,23 @@
 {
     "id": "90d61876-b99a-443e-994c-ba882c8558b6",
     "status": "internal_manual_review",
-    "media": [
-        {
-            "id": "2ab2e6fe-6727-4a04-bbdf-9f012569bce9",
-            "mediaId": "40851916-3e86-45cd-b8ce-0e948a8a7751",
-            "context": "document-front",
-            "probability": 0.9264236,
-            "mimeType": "image/png"
-        },
-        {
-            "id": "5da01045-6baf-482c-9913-5ce069bbec96",
-            "mediaId": "7f2dcbd8-5b5f-4f1a-bfa4-016ddf4dd662",
-            "context": "document-front",
-            "probability": 0.8734357,
-            "mimeType": "image/png"
-        }
-    ]
+    "media": {
+        "front": [
+            {
+                "id": "2ab2e6fe-6727-4a04-bbdf-9f012569bce9",
+                "mediaId": "40851916-3e86-45cd-b8ce-0e948a8a7751",
+                "context": "document-front",
+                "probability": 0.9264236,
+                "mimeType": "image/png"
+            },
+            {
+                "id": "5da01045-6baf-482c-9913-5ce069bbec96",
+                "mediaId": "7f2dcbd8-5b5f-4f1a-bfa4-016ddf4dd662",
+                "context": "document-front",
+                "probability": 0.8734357,
+                "mimeType": "image/png"
+            }
+        ],
+        "back": []
+    }
 }

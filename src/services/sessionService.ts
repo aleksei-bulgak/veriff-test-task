@@ -1,9 +1,9 @@
-import SessionClient from "../clients/internalClient";
+import { SessionClient } from "../clients/internalClient";
 import { SessionData } from "../types/session";
-import validationService from "./validationService";
-import transformerService from "./transformerService";
+import * as validationService from "./validationService";
+import * as transformerService from "./transformerService";
 
-export default class SessionService {
+class SessionService {
   private sessionClient: SessionClient;
 
   constructor(sessionClient: SessionClient) {
@@ -11,6 +11,7 @@ export default class SessionService {
   }
 
   public async getSessionInfoById(sessionUuid: string): Promise<SessionData> {
+    // eslint-disable-next-line prefer-const
     let [sessionInfo, sessionMedia, sessionContext] = await Promise.all([
       this.sessionClient.getSessionById(sessionUuid),
       this.sessionClient.getSessionMediaById(sessionUuid),
@@ -23,9 +24,20 @@ export default class SessionService {
     sessionMedia = validationService.filterInvalidMedias(sessionMedia);
     sessionContext = validationService.filterInvalidContexts(sessionContext);
     const sessionMediaGrouped = transformerService.sortMediaByProbabilityDesc(
-      transformerService.mergeMediaAndContextById(sessionMedia, sessionContext),
+      transformerService.mergeMediaAndContextById(sessionMedia, sessionContext)
     );
 
-    return { ...sessionInfo, media: sessionMediaGrouped };
+    const front =
+      sessionMediaGrouped?.filter(
+        (data) => data.context === "document-front"
+      ) || [];
+
+    const back =
+      sessionMediaGrouped?.filter((data) => data.context === "document-back") ||
+      [];
+
+    return { ...sessionInfo, media: { front, back } };
   }
 }
+
+export { SessionService };

@@ -6,7 +6,7 @@ import {
 
 const mergeMediaAndContextById = (
   sessionMedia: SessionMedia[],
-  sessionContext: SessionContext[],
+  sessionContext: SessionContext[]
 ): SessionMediaWithContext[] => {
   const mediaMap = sessionMedia.reduce((acc, media) => {
     acc.set(media.id, media);
@@ -16,7 +16,7 @@ const mergeMediaAndContextById = (
   return sessionContext
     .filter((context) => mediaMap.has(context.mediaId))
     .filter((context) => {
-      const media = mediaMap.get(context.mediaId)!;
+      const media = mediaMap.get(context.mediaId);
       const isFront =
         media.context === "document-front" && context.context === "front";
       const isBack =
@@ -27,14 +27,14 @@ const mergeMediaAndContextById = (
       const media = mediaMap.get(context.mediaId);
       return {
         ...context,
-        context: media!.context,
-        mimeType: media!.mimeType,
+        context: media.context,
+        mimeType: media.mimeType,
       } as SessionMediaWithContext;
     });
 };
 
 const sortMediaByProbabilityDesc = (
-  medias: SessionMediaWithContext[],
+  medias: SessionMediaWithContext[]
 ): SessionMediaWithContext[] => {
   if (!medias || medias.length === 0) {
     return [];
@@ -54,7 +54,4 @@ const sortMediaByProbabilityDesc = (
   });
 };
 
-export default {
-  mergeMediaAndContextById,
-  sortMediaByProbabilityDesc
-};
+export { mergeMediaAndContextById, sortMediaByProbabilityDesc };

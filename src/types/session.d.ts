@@ -1,4 +1,3 @@
-
 type SessionStatus = "internal_manual_review";
 type MimeType = "image/png";
 type SessionContextType = "back" | "front" | "none";
@@ -26,7 +25,10 @@ export type SessionContext = {
 export type SessionData = {
   id: string;
   status: SessionStatus;
-  media: SessionMediaWithContext[];
+  media: {
+    front: SessionMediaWithContext[];
+    back: SessionMediaWithContext[];
+  };
 };
 
 export type SessionMediaWithContext = {

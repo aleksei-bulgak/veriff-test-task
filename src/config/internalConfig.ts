@@ -1,3 +1,3 @@
-export default () => {
-  return process.env['INTERNAL_URL'] || '';
+export const internalConfig = () => {
+  return process.env["INTERNAL_URL"] || "";
 };
