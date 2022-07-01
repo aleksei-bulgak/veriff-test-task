@@ -18,17 +18,21 @@ const mergeMediaAndContextById = (
     .filter((context) => {
       const media = mediaMap.get(context.mediaId);
       const isFront =
-        media.context === "document-front" && context.context === "front";
+        !!media &&
+        media.context === "document-front" &&
+        context.context === "front";
       const isBack =
-        media.context === "document-back" && context.context === "back";
+        !!media &&
+        media.context === "document-back" &&
+        context.context === "back";
       return isFront || isBack;
     })
     .map((context) => {
       const media = mediaMap.get(context.mediaId);
       return {
         ...context,
-        context: media.context,
-        mimeType: media.mimeType,
+        context: media?.context,
+        mimeType: media?.mimeType,
       } as SessionMediaWithContext;
     });
 };
